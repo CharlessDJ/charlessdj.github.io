@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Visual Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="visual.html">Visual Lab</a></li>
+      <li><a href="sus.html">Sus Archive</a></li>
+      <li><a href="signature.html">Signature Works</a></li>
+      <li><a href="about.html">Tentang CJ</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Visual Lab</h1>
+
+    <h2>Upload Visual (Admin Only)</h2>
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Upload</button>
+
+    <h3>Daftar Visual:</h3>
+    <ul id="fileList"></ul>
+  </div>
+
+  <script>
+    let fileStorage = [];
+
+    function uploadFile() {
+      const input = document.getElementById('fileInput');
+      if (input.files.length === 0) return;
+
+      const file = input.files[0];
+      fileStorage.push(file);
+
+      const list = document.getElementById('fileList');
+      const li = document.createElement('li');
+
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(file);
+      link.download = file.name;
+      link.textContent = file.name;
+
+      li.appendChild(link);
+      list.appendChild(li);
+
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
+<div class="file-item">
+  <a href="poster.psd" download>
+    <img src="thumbnails.png" alt="Thumbnail Poster PSD">
+    <p>Download: Poster PSD</p>
+  </a>
+</div>
